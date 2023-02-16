@@ -1,14 +1,19 @@
-import Header from "./components/Header"
-import Sidebar from "./components/Sidebar"
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
+import Title from "./components/Title";
 
 function App() {
-
   return (
     <div className="App">
       <Header />
-      <Sidebar />
+      <main>
+        <Sidebar />
+        <section className="dashboard">
+          <Title />
+        </section>
+      </main>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

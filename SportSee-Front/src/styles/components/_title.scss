@@ -1,0 +1,14 @@
+.titles {
+    margin-top: 60px;
+    margin-bottom: 70px;
+    text-align: left;
+    h1 {
+        font-size: 48px;
+        line-height: 24px;
+        color: black;
+        margin-bottom: 40px;
+        span {
+            color: var(--color-orange);
+        }
+    }
+}
