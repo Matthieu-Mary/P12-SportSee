@@ -1,4 +1,5 @@
 import Header from "./components/Header";
+import SessionTime from "./components/SessionTime";
 import Sidebar from "./components/Sidebar";
 import Title from "./components/Title";
 
@@ -10,6 +11,7 @@ function App() {
         <Sidebar />
         <section className="dashboard">
           <Title />
+          <SessionTime />
         </section>
       </main>
     </div>
