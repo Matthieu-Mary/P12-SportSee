@@ -7,7 +7,7 @@ type Props = {};
 function DailyActivities({}: Props) {
   const [data] = useState(USER_ACTIVITY[0]);
   const sessions = data.sessions;
-//   const num: any[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  //   const num: any[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const days: string[] = sessions.map((session) => session.day);
   const weight: number[] = sessions.map((session) => session.kilogram);
   const minWeight: number =
@@ -21,8 +21,7 @@ function DailyActivities({}: Props) {
   const svgRef: any = useRef();
 
   useEffect(() => {
-    // Setting up Svg container
-
+    // Setting up Svg containers
     // WRAPPER OF THE CHART
     const wWrapper: number = 835;
     const hWrapper: number = 320;
@@ -36,25 +35,51 @@ function DailyActivities({}: Props) {
     // THE GLOBAL CHART
     const wGlobalChart: number = 700;
     const hGlobalChart: number = 145;
-    const globalChart = barChartWrapper        
+    const globalChart = barChartWrapper
       .append("svg")
       .attr("width", wGlobalChart)
       .attr("height", hGlobalChart)
       .attr("x", 43)
-      .attr("y", 112)
+      .attr("y", 112);
 
-    // SINGLE CHART 
-    const wSingleChart: number = 56;
-    const hSingleChart: number = hGlobalChart;
+    // SET THE 3 HORIZONTAL LINES ON THE GRAPH
+    const baseLine = globalChart.append("line").classed("line", true).attr("x1", 0).attr("y1", hGlobalChart).attr("x2", wGlobalChart).attr("y2", hGlobalChart).attr("stroke", "#DEDEDE");
+    const middleLine = globalChart.append("line").classed("line", true).attr("x1", 0).attr("y1", hGlobalChart/2).attr("x2", wGlobalChart).attr("y2", hGlobalChart/2).attr("stroke", "#DEDEDE").attr("stroke-dasharray", 2);
+    const lastLine =  globalChart.append("line").classed("line", true).attr("x1", 0).attr("y1", 0).attr("x2", wGlobalChart).attr("y2", 0).attr("stroke", "#DEDEDE").attr("stroke-dasharray", 2);
 
+    // GROUP CHART
+    const wGroupChart: number = 56;
+    const hGroupChart: number = hGlobalChart;
+    const groupChart = globalChart
+      .classed("graph", true)
+      .selectAll(".bar")
+      .data(sessions)
+      .enter()
+      .append("g")
+      .classed("bar", true);
 
+    // SET BACKGROUND TO THE SELECTED GROUPE CHART
+    groupChart
+      .append("rect")
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("width", wGroupChart)
+      .attr("height", hGroupChart)
+      .style("fill", "#C4C4C4")
+      .attr("opacity", 0.5);
 
-    globalChart.append("rect").attr("x", 10).attr("y", 0).attr("width", wSingleChart).attr("height", hGlobalChart).style("background", "#C4C4C4")
+    // WEIGHT BAR CHART
+    groupChart
+      .append("rect")
+      .attr("x", (d, i) => i * 90)
+      .attr("y", 0)
+      .attr("width", 7)
+      .attr("height", (d, i) => (d.kilogram-minWeight)/(maxWeight-minWeight)*hGlobalChart) 
+      .attr("rx", 3)
+      .attr("ry", 3)
+      .style("fill", "#282D30");
 
-
-
-
-
+    // CALORIES BAR CHART
 
     //Setting the scaling
 
