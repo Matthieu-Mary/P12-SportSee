@@ -18,6 +18,12 @@
             align-items: center;
             border-radius: 6px;
             margin-bottom: 20px;
+            img {
+                &:hover {
+                    transform: scale(1.15);
+                    transition: transform 0.25s ease-in-out
+                }
+            }
         }
     }
     p {

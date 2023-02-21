@@ -1,3 +1,4 @@
+import DailyActivities from "./components/DailyActivities";
 import Header from "./components/Header";
 import SessionTime from "./components/SessionTime";
 import Sidebar from "./components/Sidebar";
@@ -11,7 +12,8 @@ function App() {
         <Sidebar />
         <section className="dashboard">
           <Title />
-          <SessionTime />
+          <DailyActivities />
+          {/* <SessionTime /> */}
         </section>
       </main>
     </div>
