@@ -1,0 +1,48 @@
+.barChart-container {
+    position: relative;
+    .activity-legend {
+        position: absolute;
+        top: calc(50% - 24px/2 - 124px);
+        left: 3.83%;
+        font-size: 15px;
+        font-weight: bold;
+        line-height: 24px;
+        color: #20253A;
+    }
+    .activity-weight {
+        display: inline-flex;
+        align-items: center;
+        position: absolute;
+        left: 63.7%;
+        top: calc(50% - 24px/2 - 124px);
+        color: #74798C;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: bold;
+        div {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #282D30;
+            margin-right: 10px;
+        }
+    }
+    .activity-cal {
+        display: inline-flex;
+        align-items: center;
+        position: absolute;
+        left: 77.35%;
+        top: calc(50% - 24px/2 - 124px);
+        color: #74798C;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: bold;
+        div {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #E60000;
+            margin-right: 10px;
+        }
+    }
+}
