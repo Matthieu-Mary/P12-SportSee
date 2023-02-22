@@ -87,7 +87,8 @@ function DailyActivities({}: Props) {
       .data(sessions)
       .enter()
       .append("g")
-      .classed("bar", true);
+      .classed("bar", true)
+      .style("cursor", "pointer");
 
     //Setting the scaling
     // WEIGHT BAR CHART
