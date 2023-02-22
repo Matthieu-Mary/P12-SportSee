@@ -12,24 +12,29 @@ function DailyActivities({}: Props) {
   const minWeight: number =
     Math.min(...weight) > 1 ? Math.min(...weight) - 1 : 0;
   const maxWeight: number = Math.max(...weight) + 1;
-  const averageWeight: number = Math.round(((maxWeight - minWeight )/ 2) + minWeight)
-  // CI-DESSOUS A REVOIR ...
+  const averageWeight: number = Math.round(
+    (maxWeight - minWeight) / 2 + minWeight
+  );
   const cal: number[] = sessions.map((session) => session.calories);
   const minCal: number = Math.min(...cal) > 50 ? Math.min(...cal) - 50 : 0;
   const maxCal: number = Math.max(...cal) + 50;
 
-  const svgRef: any = useRef();
+  const barChart: any = useRef(null);
+  const infosChart: any = useRef(null);
 
   useEffect(() => {
     // Reset graph if data change
-    svgRef.current.innerHTML = "";
+    barChart.current.innerHTML = "";
+
+    // INFOS BAR
+    const infosWrapper = infosChart.current;
 
     // Setting up Svg containers
     // WRAPPER OF THE CHART
     const wWrapper: number = 835;
     const hWrapper: number = 320;
     const barChartWrapper = d3
-      .select(svgRef.current)
+      .select(barChart.current)
       .attr("width", wWrapper)
       .attr("height", hWrapper)
       .style("background", "#FBFBFB")
@@ -84,16 +89,6 @@ function DailyActivities({}: Props) {
       .append("g")
       .classed("bar", true);
 
-    // SET BACKGROUND TO THE SELECTED GROUPE CHART
-    // groupChart
-    //   .append("rect")
-    //   .attr("x", 0)
-    //   .attr("y", 0)
-    //   .attr("width", wGroupChart)
-    //   .attr("height", hGroupChart)
-    //   .style("fill", "#C4C4C4")
-    //   .attr("opacity", 0.5);
-
     //Setting the scaling
     // WEIGHT BAR CHART
     groupChart
@@ -134,32 +129,87 @@ function DailyActivities({}: Props) {
       .attr("ry", 3)
       .style("fill", "#E60000");
 
-    // Setting the axes
-    // const xScale = barChartWrapper
-    //   .append("g")
-    //   .classed("dates", true)
-    //   .selectAll("date")
-    //   .data(sessions)
-    //   .enter()
-    //   .append("text")
-    //   .classed("dates", true)
-    //   .text((d, i) => d.day)
-    //   .attr("x", (d, i) => i *(13 + wGlobalChart / sessions.length) + 12 )
-    //   .attr("y", 142 + hGlobalChart);
+    // SET BACKGROUND TO THE SELECTED GROUPE CHART
+    groupChart
+      .append("rect")
+      .attr("x", (d, i) => i * (13 + wGlobalChart / sessions.length) - 16)
+      .attr("y", 0)
+      .attr("width", wGroupChart)
+      .attr("height", hGroupChart)
+      .style("background", "#C4C4C4")
+      .attr("opacity", 0)
+      .classed("backgroundChartGroup", true);
 
+    // Setting the axes
+    // X AXIS
+    const xScale = barChartWrapper
+      .append("g")
+      .classed("dates", true)
+      .selectAll("date")
+      .data(days)
+      .enter()
+      .append("text")
+      .classed("dates", true)
+      .text((d, i) => Number(d.split("-").slice(-1)))
+      .attr("x", (d, i) => i * (13 + wGlobalChart / sessions.length) + 50.5)
+      .attr("y", 142 + hGlobalChart)
+      .style("fill", "#9B9EAC");
+
+    // Y AXIS
     const yScale = barChartWrapper
       .append("g")
       .classed("weights", true)
       .selectAll("weights")
-      .data(sessions)
+      .data([maxWeight, averageWeight, minWeight])
       .enter()
       .append("text")
       .classed("weight", true)
-      .text((d, i) => d.kilogram)
-      .attr("x", 789 )
-      .attr("y", 142 + hGlobalChart);
+      .text((d, i) => d)
+      .attr("x", 789)
+      .attr("y", (d, i) => 110 + (i * hGlobalChart) / 2)
+      .style("fill", "#9B9EAC");
 
-    //Setting up the svg data
+    //SET EVENTS FOR BACKGROUND AND INFOS BAR
+    groupChart.on("mouseover", function(e: any, d: any): void {
+      d3.select(e.currentTarget.querySelector(".backgroundChartGroup"))
+        .transition()
+        .duration(20)
+        .attr("opacity", 0.15);
+
+      // Create informations encart
+      const infosBar = d3
+        .select(infosWrapper)
+        .append("div")
+        .classed("infosBar", true)
+        .style("width", "39px")
+        .style("height", "63px")
+        .style("background", "#E60000")
+
+      infosBar
+        .append("span")
+        .text(`${d.kilogram}kg`)
+
+      infosBar
+        .append("span")
+        .text(`${d.calories}Kcal`)
+
+    });
+
+    groupChart.on("mouseout", function(e: any): void {
+      // Remove background 
+      d3.select(e.currentTarget.querySelector(".backgroundChartGroup"))
+        .transition()
+        .duration(100)
+        .attr("opacity", 0);
+
+      // Remove infos bar 
+      d3.selectAll(".infosBar").remove();
+    });
+
+    groupChart.on("mousemove", function(e: any): void {
+      d3.select(".infosBar").style("top", "70px").style("left", (105+(e.currentTarget.querySelector(".backgroundChartGroup").x.animVal.value))+"px")
+    })
+
   }, [data]);
 
   return (
@@ -171,7 +221,8 @@ function DailyActivities({}: Props) {
       <p className="activity-cal">
         <div></div>Calories brulées (kCal)
       </p>
-      <svg className="barChart" ref={svgRef}></svg>
+      <svg className="barChart" ref={barChart}></svg>
+      <div className="infosChart" ref={infosChart}></div>
     </div>
   );
 }
