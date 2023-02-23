@@ -7,62 +7,53 @@ interface UserSession {
   sessionLength: number;
 }
 
-// interface UserAverageSession {
-//   userId: number;
-//   sessions: UserSession[];
-// }
-
 export default function SessionTime() {
   const [data] = useState(USER_AVERAGE_SESSION[0]);
-  const days: string[] = ["L", "M", "M", "J", "V", "S", "D"];
-  const sessionLength: number[] = data.sessions.map((session) => session.sessionLength);
+  const sessions: UserSession[] = data.sessions;
+  const sessionLengthArr: number[] = data.sessions.map(
+    (session) => session.sessionLength
+  );
+  const sessionMax: number = Math.max(...sessionLengthArr);
+  const sessionMin: number = Math.min(...sessionLengthArr);
 
-  const svgRef: any = useRef();
+  console.log(sessions);
+
+  const lineChart: any = useRef();
 
   useEffect(() => {
+    lineChart.current.innerHTML = "";
+
     //Setting up svg
-    const w: number = 258;
-    const h: number = 263;
-    const svg = d3
-      .select(svgRef.current)
-      .attr("width", w)
-      .attr("height", h)
+    const wChartWrapper: number = 258;
+    const hChartWrapper: number = 263;
+    const lineChartWrapper = d3
+      .select(lineChart.current)
+      .attr("width", wChartWrapper)
+      .attr("height", hChartWrapper)
       .style("background", "#FF0000")
       .style("overflow", "visible");
 
-    //Setting the scaling
-    const xScale: any = d3.scaleOrdinal().domain(days).range([0, w]);
-    const yScale: any = d3.scaleLinear().domain([0, h]).range([h, 0]);
-    const generateScaledLine = d3
+    // Draw curves from data
+    const lineCurves = d3
       .line()
-      .x((d, i) => xScale(i))
-      .y(yScale)
-      .curve(d3.curveCardinal);
+      .x((d, i) => (wChartWrapper / (sessions.length - 1)) * i)
+      .y((d, i) => (i * 100) / d.length)
+      .curve(d3.curveNatural);
 
-    //Setting the axes
-    const xAxis = d3
-      .axisBottom(xScale)
-      .ticks(days.length)
-      .tickFormat((i: any) => i);
-    svg
-      .append("g")
-      .call(xAxis)
-      .style("color", "white")
-      .attr("transform", `translate(0, ${ h - 30 })`);
+    // Create graph with curve
+    // lineChartWrapper
+    //   .append("path")
+    //   .attr("d", lineCurves(sessions))
+    //   .attr("stroke", "url(#linGrad)")
+    //   .attr("stroke-width", 2)
+    //   .attr("fill", "none");
 
-    //Setting up the data for the svg
-    svg
-      .selectAll(".line")
-      .data([sessionLength])
-      .join("path")
-      .attr("d", (d: any) => generateScaledLine(d))
-      .attr("fill", "none")
-      .attr("stroke", "white");
+
   }, [data]);
 
   return (
     <div className="session-time">
-      <svg ref={svgRef}></svg>
+      <svg ref={lineChart}></svg>
     </div>
   );
 }

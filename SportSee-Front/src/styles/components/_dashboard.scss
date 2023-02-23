@@ -1,0 +1,15 @@
+.dashboard {
+    max-width: 1130px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1.25fr repeat(2, 1fr) 1.75fr;
+    grid-column-gap: 30px;
+    grid-row-gap: 28px;
+    }
+    
+    .titles { grid-area: 1 / 1 / 2 / 3; }
+    .barChart-container { grid-area: 2 / 1 / 4 / 4; }
+    .session-time { grid-area: 4 / 1 / 5 / 2; }
+    .radar-chart { grid-area: 4 / 2 / 5 / 3; }
+    .score-chart { grid-area: 4 / 3 / 5 / 4; }
+    .infos-container { grid-area: 2 / 4 / 5 / 5; }
