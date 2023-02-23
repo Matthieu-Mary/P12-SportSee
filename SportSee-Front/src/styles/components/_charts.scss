@@ -64,7 +64,18 @@
 }
 
 // <----- LINECHART -----> 
-
+.session-time {
+    position: relative;
+    width: 155px;
+    p {
+        position: absolute;
+        font-size: 15px;
+        color: white;
+        opacity: 0.5;
+        top: 29px;
+        left: 34px;
+    }
+}
 
 // <----- RADARCHART -----> 
 .radar-chart {

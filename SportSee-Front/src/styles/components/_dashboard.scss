@@ -1,4 +1,10 @@
 .dashboard {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 10px auto 50px;
     max-width: 1130px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
