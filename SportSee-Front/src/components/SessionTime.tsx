@@ -140,7 +140,7 @@ export default function SessionTime() {
         secondCircle.style("display", "block");
 
         // Create infos span
-        currentInfosLineChart.append("span").text("Nikomouk");
+        currentInfosLineChart.append("span").text("");
       })
       .on("mousemove", function (e) {
         const xPos = d3.pointer(e)[0];
@@ -159,7 +159,7 @@ export default function SessionTime() {
           .attr("cy", -sessionLength + 200);
 
         // Translate infos
-        currentInfosLineChart.select("span").style("left", 100) ;
+        currentInfosLineChart.select("span").text(sessionLength + " min").style("left", xScale2(index) + "px").style("top", (-sessionLength + 160) + "px");
       })
       .on("mouseout", function () {
         rightBackground.style("display", "none");
