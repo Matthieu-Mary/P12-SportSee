@@ -6,19 +6,15 @@ import Cheeseburger from "../assets/infos/cheeseburger.svg"
 import { USER_MAIN_DATA } from "../mocks/InfosMock";
 
 
-
-
 type Props = {}
 
 function Infos({}: Props) {
 
-  const [data] = useState(USER_MAIN_DATA[0])
+  const [data, setData] = useState(USER_MAIN_DATA[0])
 
   const userInfos = data.keyData
 
   const {calorieCount, proteinCount, carbohydrateCount, lipidCount} = userInfos;
-
-  console.log(userInfos)
 
   return (
     <div className="infos-container">

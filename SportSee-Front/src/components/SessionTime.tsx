@@ -123,7 +123,6 @@ export default function SessionTime() {
 
     const findHoverIndex = (xPos: number) => {
       const x0 = xScale2.invert(xPos);
-      console.log(xPos)
       const index = bisect(sessions, x0, 0);
       if ( xPos > 240 ){
         return index + 1
