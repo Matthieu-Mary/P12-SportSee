@@ -108,5 +108,38 @@
 .infos-container {
   width: 258px;
   height: 622px;
-  background-color: rgb(165, 225, 186);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .info {
+    display: flex;
+    align-items: center;
+    width: 258px;
+    height: 124px;
+    background-color: #FBFBFB;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+    .info-image {
+      margin-left: 32px;
+      margin-right: 24px;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 6px;
+    }
+    .info-name {
+      p {
+        font-size: 20px;
+        line-height: 24px;
+        font-weight: 700;
+        color: #282D30;
+      }
+      span {
+        color: #74798C;
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+  }
 }

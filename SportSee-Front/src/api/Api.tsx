@@ -1,0 +1,7 @@
+// GET USER INFOS (Calories, Proteines etc ...)
+
+// GET USER ACTIVITY
+
+//GET USER AVERAGE SESSION
+
+// GET USER PERFORMANCE (Score)
