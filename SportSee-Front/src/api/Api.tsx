@@ -1,23 +1,29 @@
+const API_URL = 'http://localhost:3000'
+
 // GET USER INFOS (Calories, Proteines etc ...)
 export const getUserInfos = (id: number | string | undefined) =>
-  fetch("http://localhost:3000/user/" + id)
+  fetch(`${API_URL}/user/${id}`)
     .then((res) => res.json())
-    .then((data) => data.data);
+    .then((data) => data.data)
+    .catch(err => console.log(err));
 
 // GET USER ACTIVITY
 export const getUserActivity = (id: number | string | undefined) =>
-  fetch("http://localhost:3000/user/" + id + "/activity")
+  fetch(`${API_URL}/user/${id}/activity`)
     .then((res) => res.json())
-    .then((data) => data.data);
+    .then((data) => data.data)
+    .catch(err => console.log(err));
 
 //GET USER AVERAGE SESSION
 export const getUserAverageSession = (id: number | string | undefined) =>
-  fetch("http://localhost:3000/user/" + id + "/average-sessions")
+  fetch(`${API_URL}/user/${id}/average-sessions`)
     .then((res) => res.json())
-    .then((data) => data.data);
+    .then((data) => data.data)
+    .catch(err => console.log(err));
 
 // GET USER PERFORMANCE (Score)
 export const getUserPerformance = (id: number | string | undefined) =>
-  fetch("http://localhost:3000/user/" + id + "/performance")
+  fetch(`${API_URL}/user/${id}/performance`)
     .then((res) => res.json())
-    .then((data) => data.data.data);
+    .then((data) => data.data.data)
+    .catch(err => console.log(err));

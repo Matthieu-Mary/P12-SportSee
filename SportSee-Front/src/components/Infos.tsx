@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Fire from "../assets/infos/Fire.svg"
 import Protein from "../assets/infos/Protein.svg"
 import Apple from "../assets/infos/apple.svg"
@@ -6,15 +5,18 @@ import Cheeseburger from "../assets/infos/cheeseburger.svg"
 import { USER_MAIN_DATA } from "../mocks/InfosMock";
 
 
-type Props = {}
+type Props = {
+  userInfos: any
+}
 
-function Infos({}: Props) {
+function Infos({userInfos}: Props) {
 
-  const [data, setData] = useState(USER_MAIN_DATA[0])
+  
+  const data = userInfos ?? USER_MAIN_DATA[0]
+  
+  const userInfosDiv = data.keyData
 
-  const userInfos = data.keyData
-
-  const {calorieCount, proteinCount, carbohydrateCount, lipidCount} = userInfos;
+  const {calorieCount, proteinCount, carbohydrateCount, lipidCount} = userInfosDiv;
 
   return (
     <div className="infos-container">

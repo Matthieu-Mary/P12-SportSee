@@ -1,4 +1,4 @@
-const USER_PERFORMANCE = [
+export const USER_PERFORMANCE = [
     {
         userId: 12,
         kind: {

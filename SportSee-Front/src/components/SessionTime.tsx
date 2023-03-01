@@ -2,13 +2,12 @@ import USER_AVERAGE_SESSION from "../mocks/SessionTimeMock.js";
 import * as d3 from "d3";
 import { useState, useRef, useEffect } from "react";
 
-// interface UserSession {
-//   day: number;
-//   sessionLength: number;
-// }
+type Props = {
+  userAverageSession: any
+}
 
-export default function SessionTime() {
-  const [data] = useState(USER_AVERAGE_SESSION[0]);
+export default function SessionTime({userAverageSession}: Props) {
+  const data = userAverageSession ?? USER_AVERAGE_SESSION[0];
   const sessions: any = data.sessions;
 
   const lineChart: any = useRef(null);

@@ -1,7 +1,9 @@
 
-type Props = {}
+type Props = {
+  userPerformance: any
+}
 
-function Performance({}: Props) {
+function Performance({userPerformance}: Props) {
   return (
     <div className="radar-chart">RADAR</div>
   )

@@ -2,20 +2,22 @@ import { USER_ACTIVITY } from "../mocks/DailyActivityMock";
 import { useState, useEffect, useRef } from "react";
 import * as d3 from "d3";
 
-type Props = {};
+type Props = {
+  userActivity: any
+};
 
-function DailyActivities({}: Props) {
-  const [data] = useState(USER_ACTIVITY[0]);
+function DailyActivities({ userActivity }: Props) {
+  const data =  userActivity ?? USER_ACTIVITY[0];
   const sessions = data.sessions;
-  const days: string[] = sessions.map((session) => session.day);
-  const weight: number[] = sessions.map((session) => session.kilogram);
+  const days: string[] = sessions.map((session: { day: number }) => session.day);
+  const weight: number[] = sessions.map((session: { kilogram: number }) => session.kilogram);
   const minWeight: number =
     Math.min(...weight) > 1 ? Math.min(...weight) - 1 : 0;
   const maxWeight: number = Math.max(...weight) + 1;
   const averageWeight: number = Math.round(
     (maxWeight - minWeight) / 2 + minWeight
   );
-  const cal: number[] = sessions.map((session) => session.calories);
+  const cal: number[] = sessions.map((session: { calories: number }) => session.calories);
   const minCal: number = Math.min(...cal) > 50 ? Math.min(...cal) - 50 : 0;
   const maxCal: number = Math.max(...cal) + 50;
 
@@ -97,14 +99,14 @@ function DailyActivities({}: Props) {
       .attr("x", (d, i) => i * (13 + wGlobalChart / sessions.length))
       .attr(
         "y",
-        (d, i) =>
+        (d: any, i) =>
           hGlobalChart -
           ((d.kilogram - minWeight) / (maxWeight - minWeight)) * hGlobalChart
       )
       .attr("width", 7)
       .attr(
         "height",
-        (d, i) =>
+        (d: any, i) =>
           ((d.kilogram - minWeight) / (maxWeight - minWeight)) * hGlobalChart
       )
       .attr("rx", 3)
@@ -117,14 +119,14 @@ function DailyActivities({}: Props) {
       .attr("x", (d, i) => i * (13 + wGlobalChart / sessions.length) + 16)
       .attr(
         "y",
-        (d, i) =>
+        (d: any, i) =>
           hGlobalChart -
           ((d.calories - minCal) / (maxCal - minCal)) * hGlobalChart
       )
       .attr("width", 7)
       .attr(
         "height",
-        (d, i) => ((d.calories - minCal) / (maxCal - minCal)) * hGlobalChart
+        (d: any, i) => ((d.calories - minCal) / (maxCal - minCal)) * hGlobalChart
       )
       .attr("rx", 3)
       .attr("ry", 3)
