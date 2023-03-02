@@ -7,8 +7,10 @@ type Props = {
 };
 
 export default function Score({ userScore }: Props) {
-  const data = USER_MAIN_DATA[0];
-  const score: number | undefined = data.todayScore;
+  console.log(userScore)
+
+  const data = userScore ?? USER_MAIN_DATA[0];
+  const score: number | undefined =  data.todayScore ?? data.score;
   const scoreInPourcent: number = score ? score * 100 : 0;
 
   const scoreChart: any = useRef(null);
@@ -22,6 +24,7 @@ export default function Score({ userScore }: Props) {
       .select(scoreChart.current)
       .attr("width", wCurrentScoreChart)
       .attr("height", hCurrentScoreChart)
+      .attr("viewbox", "0 0 260 260")
       .attr(
         "transform",
         `translate(${wCurrentScoreChart / 2} ${hCurrentScoreChart / 2})`
@@ -35,22 +38,22 @@ export default function Score({ userScore }: Props) {
       .innerRadius(80)
       .outerRadius(90)
       .startAngle(0)
-      .endAngle((-(scoreInPourcent * 3.6) * (Math.PI / 180)));
+      .endAngle(-(scoreInPourcent * 3.6) * (Math.PI / 180));
 
-    // Extern Red Circle
-    currentScoreChart
-      .append("path")
-      .attr("d", arc)
-      .attr("fill", "#FF0000");
+    // Extern Red Circle colorized
+    currentScoreChart.append("path").attr("d", arc).attr("fill", "#FF0000");
 
-      console.log(Math.PI)
+    // Intern White circle
+    currentScoreChart.append("circle").attr("cx", 0).attr("cy", 0).attr("r", 80).style("fill", "white")
 
   }, [data]);
 
+
   return (
     <div className="score-chart">
+      <p>Score</p>
       <svg ref={scoreChart}></svg>
-      {/* <p>{scoreInPourcent}</p> */}
+      <div className="score-infos"><p> <span>{scoreInPourcent}%</span> <br />de votre <br /> objectif </p></div>
     </div>
   );
 }

@@ -16,7 +16,7 @@ export default function Dashboard({data}: Props) {
       <DailyActivities userActivity={data?.dataActivity} />
       <SessionTime userAverageSession={data?.dataProgression} />
       <Performance userPerformance={data?.dataPerformance} />
-      <Score userScore={data?.dataInfos.todayScore} />
+      <Score userScore={data?.dataInfos} />
       <Infos userInfos={data?.dataInfos} />
     </section>
   );
