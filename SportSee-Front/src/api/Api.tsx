@@ -25,5 +25,5 @@ export const getUserAverageSession = (id: number | string | undefined) =>
 export const getUserPerformance = (id: number | string | undefined) =>
   fetch(`${API_URL}/user/${id}/performance`)
     .then((res) => res.json())
-    .then((data) => data.data.data)
+    .then((data) => data.data)
     .catch(err => console.log(err));

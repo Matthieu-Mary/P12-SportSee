@@ -40,7 +40,7 @@
     align-items: center;
     flex-direction: column;
     margin: 10px auto 50px;
-    max-width: 1130px;
+    max-width: auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1.25fr repeat(3, 1fr) 1.75fr;

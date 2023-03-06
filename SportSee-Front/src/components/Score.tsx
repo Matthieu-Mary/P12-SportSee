@@ -7,7 +7,6 @@ type Props = {
 };
 
 export default function Score({ userScore }: Props) {
-  console.log(userScore)
 
   const data = userScore ?? USER_MAIN_DATA[0];
   const score: number | undefined =  data.todayScore ?? data.score;
