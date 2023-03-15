@@ -5,6 +5,14 @@ import Performance from "./Performance";
 import Score from "./Score";
 import Infos from "./Infos";
 
+/**
+ * Dashboard component
+ * 
+ * @return { ReactElement } return a section with all the charts
+ */
+
+
+// Type Props will be defined in each childs components
 type Props = {
     data: any
 };

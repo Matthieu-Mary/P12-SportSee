@@ -1,8 +1,11 @@
 import Logo from "../assets/logo.svg";
 
-type Props = {};
+/**
+ * 
+ * @return { ReactElement } return the header with navigation
+ */
 
-export default function Header({}: Props) {
+export default function Header() {
   return (
     <header>
       <nav>

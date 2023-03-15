@@ -2,22 +2,41 @@ import { USER_ACTIVITY } from "../mocks/DailyActivityMock";
 import { useState, useEffect, useRef } from "react";
 import * as d3 from "d3";
 
+/**
+ * Performance BarChart component
+ *
+ * @param { number } only numbers are used
+ * @return { ReactElement } Return a BarChart component, display user's weight and colories each days
+ */
+
 type Props = {
-  userActivity: any
+  userActivity: {
+    sessions: {
+      day: string,
+      kilogram: number;
+      calories: number;
+    }[];
+  };
 };
 
 function DailyActivities({ userActivity }: Props) {
-  const data =  userActivity ?? USER_ACTIVITY[0];
+  const data = userActivity ?? USER_ACTIVITY[0];
   const sessions = data.sessions;
-  const days: string[] = sessions.map((session: { day: number }) => session.day);
-  const weight: number[] = sessions.map((session: { kilogram: number }) => session.kilogram);
+  const days: string[] = sessions.map(
+    (session) => session.day
+  );
+  const weight: number[] = sessions.map(
+    (session: { kilogram: number }) => session.kilogram
+  );
   const minWeight: number =
     Math.min(...weight) > 1 ? Math.min(...weight) - 1 : 0;
   const maxWeight: number = Math.max(...weight) + 1;
   const averageWeight: number = Math.round(
     (maxWeight - minWeight) / 2 + minWeight
   );
-  const cal: number[] = sessions.map((session: { calories: number }) => session.calories);
+  const cal: number[] = sessions.map(
+    (session: { calories: number }) => session.calories
+  );
   const minCal: number = Math.min(...cal) > 50 ? Math.min(...cal) - 50 : 0;
   const maxCal: number = Math.max(...cal) + 50;
 
@@ -126,7 +145,8 @@ function DailyActivities({ userActivity }: Props) {
       .attr("width", 7)
       .attr(
         "height",
-        (d: any, i) => ((d.calories - minCal) / (maxCal - minCal)) * hGlobalChart
+        (d: any, i) =>
+          ((d.calories - minCal) / (maxCal - minCal)) * hGlobalChart
       )
       .attr("rx", 3)
       .attr("ry", 3)
@@ -173,7 +193,7 @@ function DailyActivities({ userActivity }: Props) {
       .style("fill", "#9B9EAC");
 
     //SET EVENTS FOR BACKGROUND AND INFOS BAR
-    groupChart.on("mouseover", function(e: any, d: any): void {
+    groupChart.on("mouseover", function (e: any, d: any): void {
       d3.select(e.currentTarget.querySelector(".backgroundChartGroup"))
         .transition()
         .duration(20)
@@ -186,33 +206,35 @@ function DailyActivities({ userActivity }: Props) {
         .classed("infosBar", true)
         .style("width", "39px")
         .style("height", "63px")
-        .style("background", "#E60000")
+        .style("background", "#E60000");
 
-      infosBar
-        .append("span")
-        .text(`${d.kilogram}kg`)
+      infosBar.append("span").text(`${d.kilogram}kg`);
 
-      infosBar
-        .append("span")
-        .text(`${d.calories}Kcal`)
-
+      infosBar.append("span").text(`${d.calories}Kcal`);
     });
 
-    groupChart.on("mouseout", function(e: any): void {
-      // Remove background 
+    groupChart.on("mouseout", function (e: any): void {
+      // Remove background
       d3.select(e.currentTarget.querySelector(".backgroundChartGroup"))
         .transition()
         .duration(100)
         .attr("opacity", 0);
 
-      // Remove infos bar 
+      // Remove infos bar
       d3.selectAll(".infosBar").remove();
     });
 
-    groupChart.on("mousemove", function(e: any): void {
-      d3.select(".infosBar").style("top", "70px").style("left", (105+(e.currentTarget.querySelector(".backgroundChartGroup").x.animVal.value))+"px")
-    })
-
+    groupChart.on("mousemove", function (e: any): void {
+      d3.select(".infosBar")
+        .style("top", "70px")
+        .style(
+          "left",
+          105 +
+            e.currentTarget.querySelector(".backgroundChartGroup").x.animVal
+              .value +
+            "px"
+        );
+    });
   }, [data]);
 
   return (

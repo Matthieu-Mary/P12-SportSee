@@ -1,17 +1,30 @@
+import { ReactElement } from "react";
 import Fire from "../assets/infos/Fire.svg"
 import Protein from "../assets/infos/Protein.svg"
 import Apple from "../assets/infos/apple.svg"
 import Cheeseburger from "../assets/infos/cheeseburger.svg"
 import { USER_MAIN_DATA } from "../mocks/InfosMock";
 
+/**
+ * @param {"calorieCount", "proteinCount", "carbohydrateCount", "lipidCount"} //datas key names 
+ * @param {number}  //datas type
+ * @return { ReactElement } return a container div with all the user's informations and associated icons
+ */
+
 
 type Props = {
-  userInfos: any
+  userInfos: {
+    keyData: {
+      calorieCount: number,
+      proteinCount: number,
+      carbohydrateCount: number,
+      lipidCount: number
+    }
+  }
 }
 
 function Infos({userInfos}: Props) {
 
-  
   const data = userInfos ?? USER_MAIN_DATA[0]
   
   const userInfosDiv = data.keyData

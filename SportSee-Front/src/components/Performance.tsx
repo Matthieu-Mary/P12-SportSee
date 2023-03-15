@@ -2,19 +2,24 @@ import { useRef, useEffect } from "react";
 import { USER_PERFORMANCE } from "../mocks/PerformanceMock";
 import * as d3 from "d3";
 
+
 type Props = {
-  userPerformance: any;
+  userPerformance: {
+    data: {
+      value: number;
+      kind: number;
+    }[];
+  };
 };
 
 function Performance({ userPerformance }: Props) {
+
+  // Response from API or not
   const data = userPerformance ?? USER_PERFORMANCE[0];
-  console.log(data.data);
 
   const performancesValues = [...data.data.map((i: any) => i.value)];
-
   const maxValue = Math.max(...performancesValues);
   const angleEachPolygonsLines = 60;
-
   const radarChart: any = useRef(null);
 
   // Draw the polygons
@@ -106,7 +111,10 @@ function Performance({ userPerformance }: Props) {
           ),
         ])
       )
-      .attr("transform", `translate(${wCurrentRadarChart / 2},${hCurrentRadarChart / 2})` )
+      .attr(
+        "transform",
+        `translate(${wCurrentRadarChart / 2},${hCurrentRadarChart / 2})`
+      )
       .style("fill", "rgba(255, 1, 1, 0.7)");
   }, [data]);
 

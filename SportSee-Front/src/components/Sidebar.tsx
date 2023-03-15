@@ -3,9 +3,12 @@ import Swim from "../assets/sidebar/swimming.svg"
 import Bike from "../assets/sidebar/bike.svg"
 import Workout from "../assets/sidebar/workout.svg"
 
-type Props = {}
+/**
+ * 
+ * @return { ReactElement } return the left Sidebar with navigation
+ */
 
-export default function Sidebar({}: Props) {
+export default function Sidebar() {
   return (
     <div className="sidebar">
         <nav className="sidebar-nav">
