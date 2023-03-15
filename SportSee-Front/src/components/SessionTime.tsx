@@ -2,8 +2,21 @@ import USER_AVERAGE_SESSION from "../mocks/SessionTimeMock.js";
 import * as d3 from "d3";
 import { useRef, useEffect } from "react";
 
+/**
+ * SessionTime line chart component 
+ * 
+ * @param { number } //datas types values
+ * @return { ReactComponent } return a linechart that show the user's average sessions time each days
+ * 
+ * */
+
 type Props = {
-  userAverageSession: any
+  userAverageSession: {
+    sessions: {
+      day: number,
+      sessionLength: number
+    }[]
+  }
 }
 
 export default function SessionTime({userAverageSession}: Props) {
@@ -11,7 +24,7 @@ export default function SessionTime({userAverageSession}: Props) {
   const sessions: any = data.sessions;
 
   const lineChart: any = useRef(null);
-  const infosLineChart: any = useRef(null);
+  const infosLineChart = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     lineChart.current.innerHTML = "";
@@ -32,7 +45,7 @@ export default function SessionTime({userAverageSession}: Props) {
     const lineCurves = d3
       .line()
       .x((d, i) => (wChartWrapper / (sessions.length - 1)) * i)
-      .y((d: any, i) => -d.sessionLength + 200)
+      .y((d:any, i) => -d.sessionLength + 200)
       .curve(d3.curveNatural);
 
     // Create graph with curve

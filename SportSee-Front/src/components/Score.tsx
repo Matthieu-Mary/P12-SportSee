@@ -2,14 +2,25 @@ import { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { USER_MAIN_DATA } from "../mocks/InfosMock";
 
+
+/**
+ * Score radial chart component
+ * 
+ * @param { number } //data types values
+ * @return { ReactComponent } return a radial chart with the score of user in %
+ */
+
 type Props = {
-  userScore: any;
+  userScore: {
+    todayScore: number
+    score: number
+  };
 };
 
 export default function Score({ userScore }: Props) {
 
   const data = userScore ?? USER_MAIN_DATA[0];
-  const score: number | undefined =  data.todayScore ?? data.score;
+  const score =  data.todayScore ?? data.score;
   const scoreInPourcent: number = score ? score * 100 : 0;
 
   const scoreChart: any = useRef(null);
