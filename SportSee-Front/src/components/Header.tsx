@@ -1,6 +1,7 @@
 import Logo from "../assets/logo.svg";
 
 /**
+ * Header component
  * 
  * @return { ReactElement } return the header with navigation
  */

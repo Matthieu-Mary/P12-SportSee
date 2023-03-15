@@ -2,6 +2,12 @@ import { useRef, useEffect } from "react";
 import { USER_PERFORMANCE } from "../mocks/PerformanceMock";
 import * as d3 from "d3";
 
+/**
+ * RadarChart component
+ * 
+ * @param { number } //datas types values
+ * @return { ReactComponent } return a Radar Chart component with data to see where user performed or not
+ */
 
 type Props = {
   userPerformance: {

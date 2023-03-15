@@ -1,6 +1,6 @@
 import USER_AVERAGE_SESSION from "../mocks/SessionTimeMock.js";
 import * as d3 from "d3";
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 
 type Props = {
   userAverageSession: any

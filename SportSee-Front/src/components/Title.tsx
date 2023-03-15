@@ -1,3 +1,10 @@
+
+/**
+ * TItle component
+ * 
+ * @return { ReactComponent } return a component for title containing the name of the user actually connected
+ */
+
 type Props = {
   userName: string
 };

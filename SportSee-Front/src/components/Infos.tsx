@@ -6,6 +6,8 @@ import Cheeseburger from "../assets/infos/cheeseburger.svg"
 import { USER_MAIN_DATA } from "../mocks/InfosMock";
 
 /**
+ * User Infos component
+ * 
  * @param {"calorieCount", "proteinCount", "carbohydrateCount", "lipidCount"} //datas key names 
  * @param {number}  //datas type
  * @return { ReactElement } return a container div with all the user's informations and associated icons

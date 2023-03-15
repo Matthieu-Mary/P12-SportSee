@@ -4,6 +4,7 @@ import Bike from "../assets/sidebar/bike.svg"
 import Workout from "../assets/sidebar/workout.svg"
 
 /**
+ * Sidebar component
  * 
  * @return { ReactElement } return the left Sidebar with navigation
  */
