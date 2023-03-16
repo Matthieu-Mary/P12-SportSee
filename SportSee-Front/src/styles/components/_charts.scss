@@ -63,6 +63,13 @@
   }
 }
 
+@media screen and (max-width: 1350px) {
+  .barChart-container {
+    width: 835px;
+    margin: 0 auto;
+  }
+}
+
 // <----- LINECHART ----->
 .session-time {
   position: relative;
