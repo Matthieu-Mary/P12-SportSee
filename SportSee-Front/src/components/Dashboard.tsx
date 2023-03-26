@@ -20,7 +20,7 @@ type Props = {
 export default function Dashboard({data}: Props) {
   return (
     <section className="dashboard">
-      <Title userName={data?.dataInfos.userInfos.firstName} />
+      <Title userName={data?.dataInfos.userInfos.firstName ?? "Invité"} />
       <DailyActivities userActivity={data?.dataActivity} />
       <SessionTime userAverageSession={data?.dataProgression} />
       <Performance userPerformance={data?.dataPerformance} />
