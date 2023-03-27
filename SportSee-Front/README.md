@@ -3,6 +3,7 @@
 ## 1. General informations
 
 Project Build with Vite React Typescript template and D3 js library.
+<br/>
 This website need a backend to work properly, please read the README.md file in the Backend directory or check this link:(https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard/blob/master/README.md)
 
 ### 2. Prerequisites
