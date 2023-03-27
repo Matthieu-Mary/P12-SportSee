@@ -8,7 +8,7 @@ This website need a backend to work properly, please read the README.md file in 
 ### 2. Prerequisites
 
 - [NodeJS](https://nodejs.org/en/)
-- [Yarn] or [npm]
+- [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com)
 
 ### 3 Launching the project
 
