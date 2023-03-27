@@ -12,10 +12,10 @@ import Dashboard from "./components/Dashboard";
 
 function App() {
   interface DashboardData {
-    dataActivity?: any;
-    dataInfos?: any;
-    dataProgression?: any;
-    dataPerformance?: any;
+    dataActivity?: Object;
+    dataInfos?: Object;
+    dataProgression?: Object;
+    dataPerformance?: Object;
   }
 
   const { id } = useParams<{ id: string }>();
