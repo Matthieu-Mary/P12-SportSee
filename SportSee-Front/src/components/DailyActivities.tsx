@@ -241,10 +241,10 @@ function DailyActivities({ userActivity }: Props) {
     <div className="barChart-container">
       <p className="activity-legend">Activité quotidienne</p>
       <p className="activity-weight">
-        Poids (kg)
+       <span></span> Poids (kg)
       </p>
       <p className="activity-cal">
-        Calories brulées (kCal)
+       <span></span> Calories brulées (kCal)
       </p>
       <svg className="barChart" ref={barChart}></svg>
       <div className="infosChart" ref={infosChart}></div>
