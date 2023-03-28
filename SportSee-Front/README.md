@@ -5,12 +5,12 @@
 Project Build with Vite React Typescript template and D3 js library. <br/>
 This website need a backend to work properly, please read the README.md file in the Backend directory or check this link:(https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard/blob/master/README.md)
 
-### 2. Prerequisites
+## 2. Prerequisites
 
-- [NodeJS](https://nodejs.org/en/)
+- [NodeJS (version 16)](https://nodejs.org/en/)
 - [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com)
 
-### 3 Launching the project
+## 3 Launching the project
 
 1. Clone the project on your own computer.
 
