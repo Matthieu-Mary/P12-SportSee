@@ -1,6 +1,12 @@
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import { useState, useEffect } from "react";
+// import {
+//   getUserInfos,
+//   getUserActivity,
+//   getUserAverageSession,
+//   getUserPerformance,
+// } from "./mocks/ApiMock";
 import {
   getUserInfos,
   getUserActivity,
@@ -25,7 +31,7 @@ function App() {
     const getData = async () => {
       try {
         let dataInfos = await getUserInfos(id);
-
+        
         let dataActivity = await getUserActivity(id);
 
         let dataProgression = await getUserAverageSession(id);
