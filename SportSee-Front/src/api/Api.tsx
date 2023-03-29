@@ -6,7 +6,7 @@ const API_URL = "http://localhost:3000";
  */
 
 // GET USER INFOS (Calories, Proteines etc ...)
-export const getUserInfos = (id: number | string | undefined) =>
+export const getUserInfos = (id: number | undefined) =>
   fetch(`${API_URL}/user/${id}`)
     .then((res) => res.json())
     .then((data) => data.data);
@@ -17,7 +17,7 @@ export const getUserInfos = (id: number | string | undefined) =>
  */
 
 // GET USER ACTIVITY
-export const getUserActivity = (id: number | string | undefined) =>
+export const getUserActivity = (id: number | undefined) =>
   fetch(`${API_URL}/user/${id}/activity`)
     .then((res) => res.json())
     .then((data) => data.data);
@@ -28,7 +28,7 @@ export const getUserActivity = (id: number | string | undefined) =>
  */
 
 //GET USER AVERAGE SESSION
-export const getUserAverageSession = (id: number | string | undefined) =>
+export const getUserAverageSession = (id: number | undefined) =>
   fetch(`${API_URL}/user/${id}/average-sessions`)
     .then((res) => res.json())
     .then((data) => data.data);
@@ -39,7 +39,7 @@ export const getUserAverageSession = (id: number | string | undefined) =>
  */
 
 // GET USER PERFORMANCE (Score)
-export const getUserPerformance = (id: number | string | undefined) =>
+export const getUserPerformance = (id: number | undefined) =>
   fetch(`${API_URL}/user/${id}/performance`)
     .then((res) => res.json())
     .then((data) => data.data);
